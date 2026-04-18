@@ -1,14 +1,17 @@
-import { Router } from 'express';
 
-import CategoriaController from  '../controllers/CategoriaController.js';
+import categoriaRoutes from './routes/categoriaRoutes.js';
+import avaliacaoRoutes from './routes/avaliacaoRoutes.js';
+import pedidoRoutes from './routes/pedidoRoutes.js';
+import produtoRoutes from './routes/produtoRoutes.js';
+import entregaRoutes from './routes/entregaRoutes.js';
 
-const router = Router();
+const app = express(); 
+app.use(express.json()); 
 
-router.post('/', CategoriaController.create);
-router.get('/', CategoriaController.findAll);
-router.get('/:id', CategoriaController.findById);
-router.put('/:id', CategoriaController.update);
-router.delete('/:id', CategoriaController.delete);
-router.put('/restaure/:id', CategoriaController.restaure);
+app.use('/categorias', categoriaRoutes);
+app.use('/avaliacoes', avaliacaoRoutes);
+app.use('/pedidos', pedidoRoutes);
+app.use('/produtos', produtoRoutes);
+app.use('/entregas', entregaRoutes);
 
-export default router;
+export default app;
